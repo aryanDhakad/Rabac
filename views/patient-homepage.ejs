@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+
+
+
+    <h1>Patient Page</h1>
+    <div class="container">
+        <h3>Username : <%= data.username %>
+        </h3>
+        <h3>
+            Name : <%= data.fname %>
+                <%= data.lname %>
+        </h3>
+        <h4>DOB : <%= data.dob %>
+        </h4>
+        <h4>Special Remarks : <%= data.remarks %>
+        </h4>
+        <h4> Last Visit : <%= data.last_visit %>
+                <h4>
+
+    </div>
+    <div class="container">
+        <h2>ECG</h2>
+        <button class="btn btn-success" onClick="start(0,'Heart_Beat',50,0)">Start</button>
+        <button class="btn btn-danger" onClick="end(0,'Heart_Beat')">End</button>
+        <div class="" id="chart-rt-0"></div>
+        <canvas id="chart2-0" width="300" height="100"></canvas>
+    </div>
+    <div class="container">
+        <h2>Pulse</h2>
+        <button class="btn btn-success" onClick="start(1,'Pulse_Beat',50,0)">Start</button>
+        <button class="btn btn-danger" onClick="end(1,'Pulse_Beat')">End</button>
+        <div class="" id="chart-rt-1"></div>
+        <canvas id="chart2-1" width="300" height="100"></canvas>
+    </div>
+    <div class="container">
+        <h2>Sample</h2>
+        <button class="btn btn-success" onClick="start(2,'Sample_Beat',50,0)">Start</button>
+        <button class="btn btn-danger" onClick="end(2,'Sample_Beat')">End</button>
+        <div class="" id="chart-rt-2"></div>
+        <canvas id="chart2-2" width="300" height="100"></canvas>
+    </div>
+
+    <form action="/submit_data" method="post">
+
+        <input type="hidden" name="username" value=<%=data.username %>>
+        <input type="hidden" name="data">
+        <input type="hidden" name="date">
+        <button class="btn btn-primary btn-lg p-3" onClick="show()">Submit</button>
+    </form>
+
+
+
+    <%- include('partials/footer') %>

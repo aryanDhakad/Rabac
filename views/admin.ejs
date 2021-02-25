@@ -1,0 +1,94 @@
+<%- include('partials/header') %>
+
+    <button type="button" class="btn btn-primary m-3 p-2" data-toggle="modal" data-target="#pat_register">
+        Register New Doctor
+    </button>
+    <div class="row">
+        <div class="col-6">
+
+            <%for(i in doc_names){%>
+                <form action="/register" method="post">
+                    <h4>Username: <%= doc_names[i] %>
+                    </h4>
+                    <input type="hidden" name="op" value="del">
+                    <input type="hidden" name="catagory" value="doctor">
+                    <button type="submit" class="btn btn-primary m-3 p-2" value="<%= doc_names[i] %>"
+                        name="username">Delete</button>
+                </form>
+                <%}%>
+
+        </div>
+        <div class="col-6">
+            <%for(i in pat_names){%>
+                <form action="/register" method="post">
+                    <h4>Username: <%= pat_names[i] %>
+                    </h4>
+                    <input type="hidden" name="op" value="del">
+                    <input type="hidden" name="catagory" value="patient">
+                    <button type="submit" class="btn btn-primary m-3 p-2" value="<%= pat_names[i] %>"
+                        name="username">Delete</button>
+                </form>
+                <%}%>
+        </div>
+    </div>
+
+
+
+
+
+
+    <form action="/register" method="post">
+        <div class="modal fade" id="pat_register" tabindex="-1" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Patient Resgisteration</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input class="form-control" required type="email" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" required type="password" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">Email Account</label>
+                            <input class="form-control" required type="email" name="mail">
+                        </div>
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input class="form-control" required type="text" name="fname">
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input class="form-control" required type="text" name="lname">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Enter Date Of Birth</label>
+                            <input class="form-control" required type="date" name="dob">
+                        </div>
+                        <div class="form-group">
+                            <label for="remarks">Special Remarks(Speciality in Any Field(s))</label>
+                            <textarea class="form-control" class="form-control" type="text" row="5" col="10"
+                                name="remarks"></textarea>
+                        </div>
+                        <input type="hidden" name="catagory" value="patient">
+                        <input type="hidden" name="op" value="add">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <%- include('partials/footer') %>
