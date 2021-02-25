@@ -3,6 +3,7 @@ const ejs = require("ejs");
 const app = express();
 var admin = require("firebase-admin");
 var nodemailer = require("nodemailer")
+var alert = require("alert")
 require('dotenv').config()
 
 
@@ -206,7 +207,7 @@ app.post("/submit_data",async (req, res)=>{
         if(error){
             console.log(error);
         }else{
-            console.log("Email Sent");
+            alert("Email Sent");
         }
     })
     pat.doc(req.body['username']).update({ 
