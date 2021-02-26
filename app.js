@@ -172,7 +172,7 @@ app.post("/submit_data",async (req, res)=>{
     // console.log(data,req.body['username']);
     // console.log(catagoryof(data.username),data.username);
     // console.log(catagoryof(`${data.date}`),data.date);
-    req.body.date = req.body.date.substr(0,17)
+
     var d1 = await pat.doc(req.body['username']).get();
     d1 = d1.data();
     prev = d1.data;
