@@ -15,19 +15,6 @@ var transporter = nodemailer.createTransport({
     }
 })
 
-// var firebaseConfig = {
-//     apiKey: "AIzaSyAPrbKHvFYGlbwblTzaMk02e0HNA6ZDMME",
-//     authDomain: "rabac-cda7f.firebaseapp.com",
-//     projectId: "rabac-cda7f",
-//     storageBucket: "rabac-cda7f.appspot.com",
-//     messagingSenderId: "689077622553",
-//     appId: "1:689077622553:web:934767454a54df65d11788",
-//     measurementId: "G-7D0DFBBKGF"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-
 var serviceAccount = JSON.parse(process.env.FIRSTR);
 
 admin.initializeApp({
