@@ -68,9 +68,7 @@ app.post("/register",async (req, res) =>{
         
     // console.log(req.body);
     const temp = await pat.doc(req.body.username).get();
-    if(temp.exists){
-        return res.render("login",{status: "Username Already Exists.(Patient)",color:1});
-    }
+    
     const catagory = req.body['catagory'];
     var newUser = {
         fname: req.body.fname,
@@ -93,12 +91,16 @@ app.post("/register",async (req, res) =>{
         return res.redirect("/admin")
     }else if(catagory === "patient"){
         if(req.body.op == "add"){
+            if(temp.exists){
+                return res.render("login",{status: "Username Already Exists.(Patient)",color:1});
+            }
             pat.doc(req.body.username).set(newUser)
+            return res.render("login",{status: "Account Created.(Patient)",color:0});
         }else if(req.body.op == "del"){
             pat.doc(req.body.username).delete()
             return res.redirect("/admin")
         }
-        return res.render("login",{status: "Account Created.(Patient)",color:0});
+       
 }
 })
 
@@ -170,6 +172,7 @@ app.post("/submit_data",async (req, res)=>{
     // console.log(data,req.body['username']);
     // console.log(catagoryof(data.username),data.username);
     // console.log(catagoryof(`${data.date}`),data.date);
+    req.body.date = req.body.date.substr(0,17)
     var d1 = await pat.doc(req.body['username']).get();
     d1 = d1.data();
     prev = d1.data;

@@ -3,6 +3,7 @@ function randomInt(min, max) {
     return Math.floor(Math.random() *(max - min)) + min;
 }
 
+
 function show_data(s){  
     const d  = JSON.parse(s);
     var x,y,z;
@@ -93,8 +94,8 @@ function show(){
     var d = new Date();
     var hrs = d.getHours();
     var min = d.getMinutes();
-    hrs = hrs > "10" ? hrs : "0"+hrs;
-    min = min > "10" ? min : "0"+min;
+    hrs = hrs > "9" ? hrs : "0"+hrs;
+    min = min > "9" ? min : "0"+min;
     d = d.toLocaleDateString("en-US",options)+ "_" + hrs + ':' + min;
     var obj1 = {
         data_0:[xAxis[0],yAxis[0],avgVal[0]],

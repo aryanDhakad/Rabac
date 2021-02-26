@@ -11,7 +11,7 @@ body{
 }
 .login-form{
     background: rgb(255,137,247);
-background: linear-gradient(321deg, rgba(255,137,247,1) 50%, rgba(255,255,255,1) 50%);
+background: linear-gradient(321deg, #851995 50%, rgba(255,255,255,1) 50%);
     border-radius: 10%;
     border: 2px solid rgba(255,137,247,1);
     padding: 5% ;
@@ -28,7 +28,7 @@ label{
 .details-card{
     margin: 30px 10px;
     position: relative;
-    padding: 2%;
+    padding: 1%;
     border: 2px solid black;
     
 }

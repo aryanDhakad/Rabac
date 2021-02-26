@@ -18,11 +18,12 @@
             </div>
             <div class="col-6">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Special Remarks : <%= data.remarks %>
-                    </li>
+
                     <li class="list-group-item">Mail Account : <%= data.account %>
                     </li>
-                    <li class="list-group-item">Last Visit : <%= data.last_visit %>
+                    <li class="list-group-item">Last Visit : <%= data.last_visit.substr(0,17) %>
+                    </li>
+                    <li class="list-group-item">Special Remarks : <%= data.remarks %>
                     </li>
                 </ul>
             </div>

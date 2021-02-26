@@ -2,19 +2,19 @@
 
 
 
-    <div class="row">
-        <div class="col-3 ">
+    <div class="row mb-5">
+        <div class="col-3 shadow">
             <%pat_names.forEach(name=> {%>
                 <form action="/get_pat_data" method="post">
                     <input type="hidden" name="doc_name" value="<%=doc_data.username%>">
                     <input type="hidden" name="names" value="<%=json_pat_names%>">
-                    <button class="btn btn-primary m-3" value="<%=name %>" type="submit" name="pat_name">
+                    <button class="btn btn-primary m-1" value="<%=name %>" type="submit" name="pat_name">
                         <%= name %>
                     </button>
                 </form>
                 <%})%>
         </div>
-        <div class="col-9">
+        <div class="col-9 p-0">
             <div class="details-card">
                 <h3 style="position: absolute; left: 10% ; top: -10%; background-color:white;" class="px-3">Dcotor
                     Details</h3>
@@ -32,11 +32,10 @@
                     </div>
                     <div class="col-6">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Special Remarks : <%= doc_data.remarks %>
-                            </li>
+
                             <li class="list-group-item">Mail Account : <%= doc_data.account %>
                             </li>
-                            <li class="list-group-item">Last Visit : <%= doc_data.last_visit %>
+                            <li class="list-group-item">Special Remarks : <%= doc_data.remarks %>
                             </li>
                         </ul>
                     </div>
@@ -51,16 +50,15 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-3 ">
+    <div class="row mb-5">
+        <div class="col-3 shadow ">
             <% for(i in pat_data){%>
-                <button onClick="show_data('<%= pat_data[i]%>')" class="btn btn-success m-3">
+                <button onClick="show_data('<%= pat_data[i]%>')" class="btn btn-success" style="margin: 3px 0;">
                     <%= i %>
                 </button>
                 <%}%>
-
         </div>
-        <div class="col-9">
+        <div class="col-9 p-0">
             <div class="details-card">
                 <h3 style="position: absolute; left: 10% ; top: -10%; background-color:white;" class="px-3">Patient
                     Details</h3>
@@ -78,11 +76,12 @@
                     </div>
                     <div class="col-6">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Special Remarks : <%= data.remarks %>
-                            </li>
+
                             <li class="list-group-item">Mail Account : <%= data.account %>
                             </li>
                             <li class="list-group-item">Last Visit : <%= data.last_visit %>
+                            </li>
+                            <li class="list-group-item">Special Remarks : <%= data.remarks %>
                             </li>
                         </ul>
                     </div>
