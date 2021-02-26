@@ -2,23 +2,43 @@
 
 
 
+    <div class="details-card">
+        <h3 style="position: absolute; left: 10% ; top: -10%; background-color:white;" class="px-3">Patient Details</h3>
+        <div class="row">
+            <div class="col-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Username : <%= data.username %>
+                    </li>
+                    <li class="list-group-item">Name : <%= data.fname %>
+                            <%= data.lname %>
+                    </li>
+                    <li class="list-group-item">DOB : <%= data.dob %>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Special Remarks : <%= data.remarks %>
+                    </li>
+                    <li class="list-group-item">Mail Account : <%= data.account %>
+                    </li>
+                    <li class="list-group-item">Last Visit : <%= data.last_visit %>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-    <h1>Patient Page</h1>
-    <div class="container">
-        <h3>Username : <%= data.username %>
-        </h3>
-        <h3>
-            Name : <%= data.fname %>
-                <%= data.lname %>
-        </h3>
-        <h4>DOB : <%= data.dob %>
-        </h4>
-        <h4>Special Remarks : <%= data.remarks %>
-        </h4>
-        <h4> Last Visit : <%= data.last_visit %>
-                <h4>
+        <div class="submit_button mx-5">
+            <form action="/submit_data" method="post">
+                <input type="hidden" name="username" value=<%=data.username %>>
+                <input type="hidden" name="data">
+                <input type="hidden" name="date">
+                <button class="btn btn-primary btn-lg rounded-pill px-5 fs-2" onClick="show()">Submit</button>
+            </form>
+        </div>
 
     </div>
+
     <div class="container">
         <h2>ECG</h2>
         <button class="btn btn-success" onClick="start(0,'Heart_Beat',50,0)">Start</button>
@@ -41,13 +61,7 @@
         <canvas id="chart2-2" width="300" height="100"></canvas>
     </div>
 
-    <form action="/submit_data" method="post">
 
-        <input type="hidden" name="username" value=<%=data.username %>>
-        <input type="hidden" name="data">
-        <input type="hidden" name="date">
-        <button class="btn btn-primary btn-lg p-3" onClick="show()">Submit</button>
-    </form>
 
 
 

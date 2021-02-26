@@ -7,3 +7,41 @@ body{
     align-items: center;
     display: flex;
 }
+.login-form{
+    background: rgb(255,137,247);
+background: linear-gradient(321deg, rgba(255,137,247,1) 50%, rgba(255,255,255,1) 50%);
+    border-radius: 10%;
+    border: 2px solid rgba(255,137,247,1);
+    padding: 5% ;
+    
+}
+label{
+    font-size:1.5rem;
+    font-weight: bold;
+}
+.list-group-item{
+    font-size:1.2rem;
+    /* font-weight: bold; */
+}
+.details-card{
+    margin: 30px 10px;
+    position: relative;
+    padding: 2%;
+    border: 2px solid black;
+    
+}
+
+.submit_button{
+    position: absolute;
+    right: 20px;
+}
+.row{
+    max-height: 300px;
+    margin: 10px;
+    
+}
+.col-3{
+    max-height: 300px;
+    overflow-y:  scroll;
+    border: 2px solid black;
+}

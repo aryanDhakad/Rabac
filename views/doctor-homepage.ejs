@@ -1,61 +1,100 @@
 <%- include('partials/header') %>
 
-    <div class="container">
 
 
-        <h1>Doctor Page</h1>
-        <h3>
-            Username : <%= doc_data.username%>
-        </h3>
-        <h4>
-            Full Name: <%= doc_data.fname%>
-                <%= doc_data.lname%>
-        </h4>
-        <h4>
-            DOB : <%= doc_data.dob %>
-        </h4>
-        <h4>
-            Specility : <%= doc_data.remarks %>
-        </h4>
-        <form action="/" method="get">
-            <button type="submit" class="btn btn-primary m-3 p-2"> Logout </button>
-        </form>
+    <div class="row">
+        <div class="col-3 ">
+            <%pat_names.forEach(name=> {%>
+                <form action="/get_pat_data" method="post">
+                    <input type="hidden" name="doc_name" value="<%=doc_data.username%>">
+                    <input type="hidden" name="names" value="<%=json_pat_names%>">
+                    <button class="btn btn-primary m-3" value="<%=name %>" type="submit" name="pat_name">
+                        <%= name %>
+                    </button>
+                </form>
+                <%})%>
+        </div>
+        <div class="col-9">
+            <div class="details-card">
+                <h3 style="position: absolute; left: 10% ; top: -10%; background-color:white;" class="px-3">Dcotor
+                    Details</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Username : <%= doc_data.username %>
+                            </li>
+                            <li class="list-group-item">Name : <%= doc_data.fname %>
+                                    <%= doc_data.lname %>
+                            </li>
+                            <li class="list-group-item">DOB : <%= doc_data.dob %>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Special Remarks : <%= doc_data.remarks %>
+                            </li>
+                            <li class="list-group-item">Mail Account : <%= doc_data.account %>
+                            </li>
+                            <li class="list-group-item">Last Visit : <%= doc_data.last_visit %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="submit_button mx-5">
+                    <form action="/" method="get">
+                        <button type="submit" class="tn btn-primary btn-lg rounded-pill px-5 fs-2"> Logout </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </div>
-
-
-    <div class="d-flex flex-wrap flex-row">
-        <%pat_names.forEach(name=> {%>
-            <form action="/get_pat_data" method="post">
-                <input type="hidden" name="doc_name" value="<%=doc_data.username%>">
-                <input type="hidden" name="names" value="<%=json_pat_names%>">
-                <button class="btn btn-primary m-3" value="<%=name %>" type="submit" name="pat_name">
-                    <%= name %>
+    <div class="row">
+        <div class="col-3 ">
+            <% for(i in pat_data){%>
+                <button onClick="show_data('<%= pat_data[i]%>')" class="btn btn-success m-3">
+                    <%= i %>
                 </button>
-            </form>
-            <%})%>
-    </div>
-    <div class="container">
-        <h3>Username : <%= data.username %>
-        </h3>
-        <h3>
-            Name : <%= data.fname %>
-                <%= data.lname %>
-        </h3>
-        <h4>DOB : <%= data.dob %>
-        </h4>
-        <h4>Special Remarks : <%= data.remarks %>
-        </h4>
-        <h4> Last Visit : <%= data.last_visit %>
-                <h4>
+                <%}%>
 
+        </div>
+        <div class="col-9">
+            <div class="details-card">
+                <h3 style="position: absolute; left: 10% ; top: -10%; background-color:white;" class="px-3">Patient
+                    Details</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Username : <%= data.username %>
+                            </li>
+                            <li class="list-group-item">Name : <%= data.fname %>
+                                    <%= data.lname %>
+                            </li>
+                            <li class="list-group-item">DOB : <%= data.dob %>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Special Remarks : <%= data.remarks %>
+                            </li>
+                            <li class="list-group-item">Mail Account : <%= data.account %>
+                            </li>
+                            <li class="list-group-item">Last Visit : <%= data.last_visit %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="d-flex flex-wrap flex-row">
-        <% for(i in pat_data){%>
-            <button onClick="show_data('<%= pat_data[i]%>')" class="btn btn-success m-3">
-                <%= i %>
-            </button>
-            <%}%>
-    </div>
+
+
+
+
+
 
     <div class="container">
         <canvas id="chart2-0" width="300" height="100"></canvas>
