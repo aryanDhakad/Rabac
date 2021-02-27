@@ -38,9 +38,7 @@ label{
     right: 20px;
 }
 .row{
-    max-height: 300px;
-    margin: 10px;
-    
+    max-height: 400px;
 }
 .col-3{
     max-height: 300px;
