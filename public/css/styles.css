@@ -38,7 +38,7 @@ label{
     right: 20px;
 }
 .row{
-    max-height: 400px;
+    min-height: 200px;
 }
 .col-3{
     max-height: 300px;
