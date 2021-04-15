@@ -1,8 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
-
 body{
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Calibri', monospace;
 }
 .jic{
     justify-content: center;
@@ -10,12 +9,10 @@ body{
     display: flex;
 }
 .login-form{
-    background: rgb(255,137,247);
-background: linear-gradient(321deg, #851995 50%, rgba(255,255,255,1) 50%);
-    border-radius: 10%;
-    border: 2px solid rgba(255,137,247,1);
-    padding: 5% ;
-    
+    background: rgb(0,137,247);
+background: linear-gradient(321deg, #4a006a 50%, rgba(255,255,255,1) 50%);
+    border-radius: 6%;
+    padding: 5% ;  
 }
 label{
     font-size:1.5rem;
@@ -30,7 +27,6 @@ label{
     position: relative;
     padding: 1%;
     border: 2px solid black;
-    
 }
 
 .submit_button{
@@ -38,9 +34,7 @@ label{
     right: 20px;
 }
 .row{
-    max-height: 300px;
-    margin: 10px;
-    
+    min-height: 200px;
 }
 .col-3{
     max-height: 300px;

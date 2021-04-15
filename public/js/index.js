@@ -1,7 +1,17 @@
 
+
+let stat = $("input[name='alert_stat']").val()
+
+   if(stat != undefined && stat !="Welcome to Rabac"){
+       alert(stat);
+   }
+
+
 function randomInt(min, max) {
     return Math.floor(Math.random() *(max - min)) + min;
 }
+
+
 
 
 function show_data(s){  
@@ -24,6 +34,10 @@ let simulation;
 let n = [0,0,0];
 let avg = [0,0,0];
 
+let db1 = $("input[name='p_data']").val()
+if(db1 != undefined)
+    db1 = db1.split(",").map(x => +x*100)
+
 
 function start(ind,name,high,low) { 
     let st = randomInt(low, high);
@@ -31,6 +45,10 @@ function start(ind,name,high,low) {
     yAxis[ind] = []
     xAxis[ind] = []
     avgVal[ind] = []
+
+    if(ind == 2)
+        yAxis[ind] = db1;
+
     n[ind]  = 0;
     avg[ind] = 0;
     Plotly.newPlot(`chart-rt-${ind}`,[{
@@ -58,17 +76,36 @@ function start(ind,name,high,low) {
 
 function init(ind,high,low) {
     
-    let t = randomInt(low,high);
-
-    let diff = (high - low)/8;
-    
-    if( t < high - diff && t > high - 2*diff){
-        t-=diff;
-    }else if(t < low + 2*diff && t > low + diff){
-        t+=diff;
-    }
     let s = avg[ind]*n[ind];
     n[ind]+=1;
+   
+    let t = randomInt(low,high);
+   
+
+    if(ind == 2){
+        t = db1[n[ind]];
+    }
+
+    if(t > 1.2*avg[ind]){
+        $("#stat_chest")[0].innerHTML = "High"
+        $("#stat_chest").css("color","red");
+    }else if(t < .8*avg[ind]){
+        $("#stat_chest")[0].innerHTML = "Low"
+        $("#stat_chest").css("color","red");
+    }else{
+        $("#stat_chest")[0].innerHTML = "Normal"
+        $("#stat_chest").css("color","green");
+    }
+
+    // let diff = (high - low)/8;
+    
+    // if( t < high - diff && t > high - 2*diff){
+    //     t-=diff;
+    // }else if(t < low + 2*diff && t > low + diff){
+    //     t+=diff;
+    // }
+    
+   
     s+=t;
     avg[ind]= s/n[ind];
     // console.log(avg[ind],n[ind]);
@@ -108,7 +145,8 @@ function show(){
 }
 
 
-function getChart2(ind,n,t,avg){  
+function getChart2(ind,n,t,avg){ 
+    
     Plotly.extendTraces( `chart-rt-${ind}` ,{y : [[t], [avg]]}, [0,1])
         Plotly.relayout( `chart-rt-${ind}` ,{
             xaxis:{

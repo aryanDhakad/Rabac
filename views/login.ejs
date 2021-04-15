@@ -1,66 +1,58 @@
 <%- include('partials/header') %>
 
+    <input type="hidden" name="alert_stat" value="<%=status %>">
+
     <div class="jumbtoron text-center mb-3 ">
-        <img src="css/logo1.png" style="height: 100%;" alt="nf" class="">
+        <!-- <img src="css/logo1.png" style="height: 100%;" alt="nf" class=""> -->
         <h1 class=" display-4">Rabac</h1>
         <h3>The Medical Data Tracker</h3>
     </div>
 
     <div class="continer my-4 shadow-lg py-5">
-        <% if(color==1){ %>
-            <h3 class="display-5 text-center m-3 text-bolder text-danger">
-                <%= status %>
-            </h3>
-            <%}else{%>
-                <h3 class="display-5 text-center m-3 text-bolder text-success">
-                    <%= status %>
-                </h3>
-                <%}%>
 
-                    <div class="row">
-                        <div class="col-6 py-3 px-5 ">
-                            <h2 class="text-center">Doctor Login</h2>
-                            <div class="login-form shadow-lg">
-                                <form action="/login" method="post">
-                                    <div class="form-group">
-                                        <label for="username">Username </label>
-                                        <input required type="email" name="username" class="form-control">
-                                        <input type="hidden" value="doctor" name="catagory">
-                                    </div>
-                                    <div class="from-group">
-                                        <label for="passowrd">Password </label>
-                                        <input required type="password" name="password" class="form-control">
-                                    </div>
-                                    <button class="btn btn-primary px-3 py-2 my-3" name="login-btn" value="doctor"
-                                        action="submit">SUBMIT
-                                    </button>
-                                </form>
-                            </div>
+
+        <div class="row" id="partials-js">
+            <div class="col-6 py-3 px-5 ">
+                <h2 class="text-center">Doctor Login</h2>
+                <div class="login-form shadow-lg">
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="username">Username </label>
+                            <input required type="email" name="username" class="form-control">
+                            <input type="hidden" value="doctor" name="catagory">
                         </div>
-                        <div class="col-6 py-3 px-5 ">
-                            <h2 class="text-center">Patient Login</h2>
-                            <div class="login-form shadow-lg">
-                                <form action="/login" method="post">
-                                    <div class="form-group">
-                                        <label for="username">Username </label>
-                                        <input required type="email" name="username" class="form-control">
-                                        <input type="hidden" value="patient" name="catagory">
-                                    </div>
-                                    <div class="from-group">
-                                        <label for="passowrd">Password </label>
-                                        <input required type="password" name="password" class="form-control">
-                                    </div>
-                                    <button class="btn btn-primary px-3 py-2 my-3" name="login-btn"
-                                        action="submit">SUBMIT
-                                    </button>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#pat_register">
-                                        Register New Patient
-                                    </button>
-                                </form>
-                            </div>
+                        <div class="from-group">
+                            <label for="passowrd">Password </label>
+                            <input required type="password" name="password" class="form-control">
                         </div>
-                    </div>
+                        <button class="btn btn-primary px-3 py-2 my-3" name="login-btn" value="doctor"
+                            action="submit">SUBMIT
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6 py-3 px-5 ">
+                <h2 class="text-center">Patient Login</h2>
+                <div class="login-form shadow-lg">
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="username">Username </label>
+                            <input required type="email" name="username" class="form-control">
+                            <input type="hidden" value="patient" name="catagory">
+                        </div>
+                        <div class="from-group">
+                            <label for="passowrd">Password </label>
+                            <input required type="password" name="password" class="form-control">
+                        </div>
+                        <button class="btn btn-primary px-3 py-2 my-3" name="login-btn" action="submit">SUBMIT
+                        </button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pat_register">
+                            Register New Patient
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Button trigger modal -->

@@ -24,8 +24,8 @@ admin.initializeApp({
 const db = admin.firestore();
 const doctor = db.collection("Doctors");
 const pat = db.collection("Patients");
-
-
+const dt = db.collection("db1");
+const fs = require('fs');
 
 
 app.use(express.urlencoded({
@@ -34,9 +34,17 @@ app.use(express.urlencoded({
 app.use(express.static("public"))
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) =>{
-    res.render("login",{status: "Please Enter Details",color:0}) 
+app.get('/', async (req, res) =>{
+   
+    let fileContent = fs.readFileSync('output.txt', 'utf-8');
+    dt.doc("data1").set({
+        y_val: fileContent
+    })
+   
+    res.render("login",{status: "Welcome to Rabac"}) 
 })
+
+
 app.get("/admin",async (req, res) =>{
     var pat_names = [];
         const n = await pat.get();
@@ -79,10 +87,10 @@ app.post("/register",async (req, res) =>{
     }else if(catagory === "patient"){
         if(req.body.op == "add"){
             if(temp.exists){
-                return res.render("login",{status: "Username Already Exists.(Patient)",color:1});
+                return res.render("login",{status: "Username Already Exists.(Patient)"});
             }
             pat.doc(req.body.username).set(newUser)
-            return res.render("login",{status: "Account Created.(Patient)",color:0});
+            return res.render("login",{status: "Account Created.(Patient)"});
         }else if(req.body.op == "del"){
             pat.doc(req.body.username).delete()
             return res.redirect("/admin")
@@ -101,6 +109,9 @@ app.post('/login',async (req, res) =>{
     let usr = req.body['username'] || "null";
     let pass = req.body['password'] || "null";
     let catagory = req.body['catagory'] || "null";
+
+    const tt1 = await dt.doc("data1").get();
+    
    
     if(catagory === "doctor"){
         
@@ -122,18 +133,18 @@ app.post('/login',async (req, res) =>{
                 })
             }
             else
-            return res.render("login",{status: "Wrong Userame or Password.(Doctor)",color:1});
+            return res.render("login",{status: "Wrong Userame or Password.(Doctor)"});
         }else
-            return res.render("login",{status: "Account Doesn't Exists.(Doctor)",color:1});        
+            return res.render("login",{status: "Account Doesn't Exists.(Doctor)"});        
     }else{
         var p1 = await pat.doc(usr).get();
         if(p1.exists){
             if(p1.data().password == pass){
-                return res.render("patient-homepage",{data:p1.data()});
+                return res.render("patient-homepage",{data:p1.data(),p_data:tt1.data().y_val});
             }else
-            return res.render("login",{status: "Wrong Username or Password.(Patient)",color:1});
+            return res.render("login",{status: "Wrong Username or Password.(Patient)"});
         }else{
-            return res.render("login",{status: "Account Doesn't Exists.(Patient)",color:1});
+            return res.render("login",{status: "Account Doesn't Exists.(Patient)"});
         
         }
 }

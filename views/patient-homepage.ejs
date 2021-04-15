@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-
+    <input type="hidden" name="p_data" value=<%=p_data %> />
 
     <div class="details-card">
         <h3 style="position: absolute; left: 10% ; top: -10%; background-color:white;" class="px-3">Patient Details</h3>
@@ -55,9 +55,10 @@
         <canvas id="chart2-1" width="300" height="100"></canvas>
     </div>
     <div class="container">
-        <h2>Sample</h2>
-        <button class="btn btn-success" onClick="start(2,'Sample_Beat',50,0)">Start</button>
-        <button class="btn btn-danger" onClick="end(2,'Sample_Beat')">End</button>
+        <h2>Chest Senesor</h2>
+        <p id="stat_chest" class="text-right" style="font-size: 2rem"></p>
+        <button class="btn btn-success" onClick="start(2,'Chest Senesor Data',50,0)">Start</button>
+        <button class="btn btn-danger" onClick="end(2,'Chest Senesor Data')">End</button>
         <div class="" id="chart-rt-2"></div>
         <canvas id="chart2-2" width="300" height="100"></canvas>
     </div>
