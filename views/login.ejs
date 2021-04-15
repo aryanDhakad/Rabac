@@ -10,65 +10,19 @@
 
     <div class="continer my-4 shadow-lg py-5">
 
-<<<<<<< HEAD
-
-        <div class="row" id="partials-js">
+        <div class="row">
             <div class="col-6 py-3 px-5 ">
                 <h2 class="text-center">Doctor Login</h2>
                 <div class="login-form shadow-lg">
                     <form action="/login" method="post">
                         <div class="form-group">
-                            <label for="username">Username </label>
+                            <label for="username">Username <span class="text-danger">*</span> </label>
                             <input required type="email" name="username" class="form-control">
                             <input type="hidden" value="doctor" name="catagory">
                         </div>
                         <div class="from-group">
-                            <label for="passowrd">Password </label>
+                            <label for="passowrd">Password <span class="text-danger">*</span> </label>
                             <input required type="password" name="password" class="form-control">
-=======
-                    <div class="row">
-                        <div class="col-6 py-3 px-5 ">
-                            <h2 class="text-center">Doctor Login</h2>
-                            <div class="login-form shadow-lg">
-                                <form action="/login" method="post">
-                                    <div class="form-group">
-                                        <label for="username">Username  <span class="text-danger">*</span> </label>
-                                        <input required type="email" name="username" class="form-control">
-                                        <input type="hidden" value="doctor" name="catagory">
-                                    </div>
-                                    <div class="from-group">
-                                        <label for="passowrd">Password  <span class="text-danger">*</span> </label>
-                                        <input required type="password" name="password" class="form-control">
-                                    </div>
-                                    <button class="btn btn-primary px-3 py-2 my-3" name="login-btn" value="doctor"
-                                        action="submit">SUBMIT
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-6 py-3 px-5 ">
-                            <h2 class="text-center">Patient Login</h2>
-                            <div class="login-form shadow-lg">
-                                <form action="/login" method="post">
-                                    <div class="form-group">
-                                        <label for="username">Username  <span class="text-danger">*</span> </label>
-                                        <input required type="email" name="username" class="form-control">
-                                        <input type="hidden" value="patient" name="catagory">
-                                    </div>
-                                    <div class="from-group">
-                                        <label for="passowrd">Password  <span class="text-danger">*</span> </label>
-                                        <input required type="password" name="password" class="form-control">
-                                    </div>
-                                    <button class="btn btn-primary px-3 py-2 my-3" name="login-btn"
-                                        action="submit">SUBMIT
-                                    </button>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#pat_register">
-                                        Register New Patient
-                                    </button>
-                                </form>
-                            </div>
->>>>>>> 3025c253aa16e3d07a099816520808056da7d77f
                         </div>
                         <button class="btn btn-primary px-3 py-2 my-3" name="login-btn" value="doctor"
                             action="submit">SUBMIT
@@ -81,12 +35,12 @@
                 <div class="login-form shadow-lg">
                     <form action="/login" method="post">
                         <div class="form-group">
-                            <label for="username">Username </label>
+                            <label for="username">Username <span class="text-danger">*</span> </label>
                             <input required type="email" name="username" class="form-control">
                             <input type="hidden" value="patient" name="catagory">
                         </div>
                         <div class="from-group">
-                            <label for="passowrd">Password </label>
+                            <label for="passowrd">Password <span class="text-danger">*</span> </label>
                             <input required type="password" name="password" class="form-control">
                         </div>
                         <button class="btn btn-primary px-3 py-2 my-3" name="login-btn" action="submit">SUBMIT
@@ -99,6 +53,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Button trigger modal -->
 

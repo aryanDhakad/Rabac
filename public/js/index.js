@@ -30,8 +30,10 @@ function show_data(s){
 var yAxis = [[],[],[]]
 var xAxis = [[],[],[]]
 var avgVal = [[],[],[]]
+var title = ['ECG_Data','Hear_Beat_Data','Chest_Data']
 let simulation;
 let n = [0,0,0];
+let critical = [0,0,0];
 let avg = [0,0,0];
 
 let db1 = $("input[name='p_data']").val()
@@ -39,91 +41,79 @@ if(db1 != undefined)
     db1 = db1.split(",").map(x => +x*100)
 
 
-function start(ind,name,high,low) { 
-    let st = randomInt(low, high);
+function start(ind) { 
+ 
     
     yAxis[ind] = []
     xAxis[ind] = []
     avgVal[ind] = []
 
-    if(ind == 2)
-        yAxis[ind] = db1;
+    yAxis[ind] = db1;
 
+    critical[ind] = 0;
     n[ind]  = 0;
     avg[ind] = 0;
     Plotly.newPlot(`chart-rt-${ind}`,[{
-        y:[st],
+        y:[db1[0]],
         type:'line',
-        name: `${name}`
+        name: `${title[ind]}`
     },{
-        y:[st],
+        y:[db1[0]],
         type:'line',
-        name:  `Average ${name}`
+        name:  `Average ${title[ind]}`
     }],
     {
-        title: `Patient ${name}` ,
+        title: `Patient ${title[ind]}` ,
         yaxis:{
-            range: [low-20,high+20]
+            range: [-50,150]
         }
     });
     if(ind === 1)
-    simulation1 = setInterval( function () {init(ind,high,low)},300);
+    simulation1 = setInterval( function () {init(ind)},300);
     if(ind === 0)
-    simulation0 = setInterval( function () {init(ind,high,low)},300);
+    simulation0 = setInterval( function () {init(ind)},300);
     if(ind === 2)
-    simulation2 = setInterval( function () {init(ind,high,low)},300);
+    simulation2 = setInterval( function () {init(ind)},300);
 }
 
-function init(ind,high,low) {
+function init(ind) {
     
     let s = avg[ind]*n[ind];
     n[ind]+=1;
    
-    let t = randomInt(low,high);
-   
-
-    if(ind == 2){
-        t = db1[n[ind]];
-    }
-
-    if(t > 1.2*avg[ind]){
-        $("#stat_chest")[0].innerHTML = "High"
-        $("#stat_chest").css("color","red");
-    }else if(t < .8*avg[ind]){
-        $("#stat_chest")[0].innerHTML = "Low"
-        $("#stat_chest").css("color","red");
+    t = db1[n[ind]];
+    
+    if(t > 1.5*avg[ind]){
+        critical[ind]+=1;
+        $(`#stat_${ind}`)[0].innerHTML = "High"
+        $(`#stat_${ind}`).css("color","red");
+    }else if(t < .5*avg[ind]){
+        $(`#stat_${ind}`)[0].innerHTML = "Low"
+        $(`#stat_${ind}`).css("color","red");
     }else{
-        $("#stat_chest")[0].innerHTML = "Normal"
-        $("#stat_chest").css("color","green");
+        $(`#stat_${ind}`)[0].innerHTML = "Normal"
+        $(`#stat_${ind}`).css("color","blue");
     }
 
-    // let diff = (high - low)/8;
-    
-    // if( t < high - diff && t > high - 2*diff){
-    //     t-=diff;
-    // }else if(t < low + 2*diff && t > low + diff){
-    //     t+=diff;
-    // }
-    
    
     s+=t;
     avg[ind]= s/n[ind];
     // console.log(avg[ind],n[ind]);
     xAxis[ind].push(n[ind]);
-    yAxis[ind].push(t);
-    avgVal[ind].push(avg[ind]);
     
+    avgVal[ind].push(avg[ind]);
+
     getChart2(ind,n[ind],t,avg[ind]);
 }
 
-function end(ind,name){
+function end(ind){
     if(ind === 0)
     clearInterval(simulation0);
     if(ind === 1)
     clearInterval(simulation1);
     if(ind === 2)
     clearInterval(simulation2);
-    getChart1(xAxis[ind],yAxis[ind],avgVal[ind],ind,name);
+    getChart1(xAxis[ind],yAxis[ind],avgVal[ind],ind);
 }
 
 function show(){
@@ -155,14 +145,19 @@ function getChart2(ind,n,t,avg){
         })  
 }
 
-function getChart1(x,y,average,ind,name){
+function getChart1(x,y,average,ind){
+  
+
+    if(critical[ind] >= 5)
+        alert( `Call Doctor for ${title[ind]}`);
+
     var ctx = document.getElementById(`chart2-${ind}`).getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: x,
         datasets: [{
-            label: `${name} of Patient`,
+            label: `${title[ind]} of Patient`,
             data: y,
             fill:false,
             backgroundColor: 
@@ -173,7 +168,7 @@ function getChart1(x,y,average,ind,name){
             ,
             borderWidth: 1
         },{
-            label:`Average ${name} of Patient`,
+            label:`Average ${title[ind]} of Patient`,
             data: average,
             fill:false,
             backgroundColor:'rgba(255, 159, 64, 0.2)',

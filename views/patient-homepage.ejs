@@ -23,9 +23,9 @@
                     </li>
                     <li class="list-group-item">Last Visit : <%= data.last_visit %>
                     </li>
-                    <li class="list-group-item px-0">Special Remarks : 
+                    <li class="list-group-item px-0">Special Remarks :
                         <br>
-                        <textarea  cols="50" rows="4" class="m-0 px-3" ><%= data.remarks %></textarea>
+                        <textarea cols="50" rows="4" class="m-0 px-3"><%= data.remarks %></textarea>
                     </li>
                 </ul>
             </div>
@@ -41,28 +41,30 @@
         </div>
     </div>
     <div style="margin-top: 200px;">
-    <div class="container">
-        <h2>ECG</h2>
-        <button class="btn btn-success" onClick="start(0,'Heart_Beat',50,0)">Start</button>
-        <button class="btn btn-danger" onClick="end(0,'Heart_Beat')">End</button>
-        <div class="" id="chart-rt-0"></div>
-        <canvas id="chart2-0" width="300" height="100"></canvas>
-    </div>
-    <div class="container">
-        <h2>Pulse</h2>
-        <button class="btn btn-success" onClick="start(1,'Pulse_Beat',50,0)">Start</button>
-        <button class="btn btn-danger" onClick="end(1,'Pulse_Beat')">End</button>
-        <div class="" id="chart-rt-1"></div>
-        <canvas id="chart2-1" width="300" height="100"></canvas>
-    </div>
-    <div class="container">
-        <h2>Chest Senesor</h2>
-        <p id="stat_chest" class="text-right" style="font-size: 2rem"></p>
-        <button class="btn btn-success" onClick="start(2,'Chest Senesor Data',50,0)">Start</button>
-        <button class="btn btn-danger" onClick="end(2,'Chest Senesor Data')">End</button>
-        <div class="" id="chart-rt-2"></div>
-        <canvas id="chart2-2" width="300" height="100"></canvas>
-    </div>
+        <div class="container">
+            <h2>ECG</h2>
+            <p id="stat_0" class="text-right" style="font-size: 2rem"></p>
+            <button class="btn btn-success" onClick="start(0)">Start</button>
+            <button class="btn btn-danger" onClick="end(0)">End</button>
+            <div class="" id="chart-rt-0"></div>
+            <canvas id="chart2-0" width="300" height="100"></canvas>
+        </div>
+        <div class="container">
+            <h2>Pulse</h2>
+            <p id="stat_1" class="text-right" style="font-size: 2rem"></p>
+            <button class="btn btn-success" onClick="start(1)">Start</button>
+            <button class="btn btn-danger" onClick="end(1)">End</button>
+            <div class="" id="chart-rt-1"></div>
+            <canvas id="chart2-1" width="300" height="100"></canvas>
+        </div>
+        <div class="container">
+            <h2>Chest Senesor</h2>
+            <p id="stat_2" class="text-right" style="font-size: 2rem"></p>
+            <button class="btn btn-success" onClick="start(2)">Start</button>
+            <button class="btn btn-danger" onClick="end(2)">End</button>
+            <div class="" id="chart-rt-2"></div>
+            <canvas id="chart2-2" width="300" height="100"></canvas>
+        </div>
     </div>
 
 
