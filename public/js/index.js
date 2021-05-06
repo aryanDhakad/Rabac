@@ -89,10 +89,10 @@ function init(ind) {
         $(`#stat_${ind}`).css("color","red");
     }else if(t < .5*avg[ind]){
         $(`#stat_${ind}`)[0].innerHTML = "Low"
-        $(`#stat_${ind}`).css("color","red");
+        $(`#stat_${ind}`).css("color","blue");
     }else{
         $(`#stat_${ind}`)[0].innerHTML = "Normal"
-        $(`#stat_${ind}`).css("color","blue");
+        $(`#stat_${ind}`).css("color","green");
     }
 
    
