@@ -37,8 +37,12 @@ app.set('view engine', 'ejs');
 app.get('/', async (req, res) =>{
    
     let fileContent = fs.readFileSync('output.txt', 'utf-8');
+    let fileContent1 = fs.readFileSync('output1.txt', 'utf-8');
+    let fileContent2 = fs.readFileSync('output2.txt', 'utf-8');
     dt.doc("data1").set({
-        y_val: fileContent
+        0: fileContent,
+        1: fileContent1,
+        2: fileContent2
     })
    
     res.render("login",{status: "Welcome to Rabac"}) 
@@ -140,7 +144,8 @@ app.post('/login',async (req, res) =>{
         var p1 = await pat.doc(usr).get();
         if(p1.exists){
             if(p1.data().password == pass){
-                return res.render("patient-homepage",{data:p1.data(),p_data:tt1.data().y_val});
+                
+                return res.render("patient-homepage",{data:p1.data(),p_data:JSON.stringify(tt1.data())});
             }else
             return res.render("login",{status: "Wrong Username or Password.(Patient)"});
         }else{
