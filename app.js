@@ -183,9 +183,9 @@ app.post("/submit_data",async (req, res)=>{
     var d_0 = obj.data_0[2]
     var d_1 = obj.data_1[2]
     var d_2 = obj.data_2[2]
-    d_0 = d_0[d_0.length - 1] || "Nor Recorded"
-    d_1 = d_1[d_1.length - 1] || "Nor Recorded"
-    d_2 = d_2[d_2.length - 1] || "Nor Recorded"
+    d_0 = d_0[d_0.length - 1] || "Not Recorded"
+    d_1 = d_1[d_1.length - 1] || "Not Recorded"
+    d_2 = d_2[d_2.length - 1] || "Not Recorded"
     
     var mailoptions = { 
         from:"placementseekers1179@gmail.com",
