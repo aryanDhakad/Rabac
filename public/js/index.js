@@ -18,11 +18,11 @@ function show_data(s){
  const d  = JSON.parse(s);
  var x,y,z;
  [x,y,z] = d.data_0
- getChart1(x,y,z,0,"Heart Beat");
+ getChart1(x,y,z,0,"Heart");
  [x,y,z] = d.data_1
  getChart1(x,y,z,1,"Pulse");
  [x,y,z] = d.data_2
- getChart1(x,y,z,2,"Sample Beat");
+ getChart1(x,y,z,2,"Chest");
  
 }
 
@@ -30,12 +30,15 @@ function show_data(s){
 var yAxis = [[],[],[]]
 var xAxis = [[],[],[]]
 var avgVal = [[],[],[]]
-var title = ['ECG_Data','Hear_Beat_Data','Chest_Data']
+var title = ['ECG_Data','Heart_Beat_Data','Chest_Data']
 let simulation;
 let n = [0,0,0];
 let critical = [0,0,0];
 let avg = [0,0,0];
 let temp = [[],[],[]]
+let sm = [0,0,0]
+let max = [0,0,0]
+let min = [0,0,0]
 
 let db1 = JSON.parse($("input[name='p_data']").val())
 
@@ -45,7 +48,7 @@ function start(ind) {
 
  if(db1 != undefined)
  temp[ind] = db1[ind].split(",").map(x => +x*100)
- console.log(temp[ind]);
+
  
 
  yAxis[ind] = []
@@ -54,6 +57,8 @@ function start(ind) {
 
  yAxis[ind] = temp[ind];
 
+ max[ind]  = temp[ind][0];
+ min[ind] = temp[ind][0]
  critical[ind] = 0;
  n[ind]  = 0;
  avg[ind] = 0;
@@ -81,23 +86,52 @@ function start(ind) {
 }
 
 function init(ind) {
+
  
  let s = avg[ind]*n[ind];
  n[ind]+=1;
 
+
+
  t = temp[ind][n[ind]];
+
+
+ max[ind] = Math.max(max[ind],t);
+ min[ind] = Math.min(min[ind],t);
+
+ if(n[ind] <= 50){
+    sm[ind]+=t;
+}else{
+    sm[ind]-=temp[ind][n[ind]-50];
+}
+
+if(critical[ind] >= 5){
+    end(ind);
+    alert( `Call Doctor for ${title[ind]}`);
+}
+
  
- if(t > 1.5*avg[ind]){
-     critical[ind]+=1;
-     $(`#stat_${ind}`)[0].innerHTML = "High"
-     $(`#stat_${ind}`).css("color","red");
- }else if(t < .5*avg[ind]){
-     $(`#stat_${ind}`)[0].innerHTML = "Low"
-     $(`#stat_${ind}`).css("color","blue");
- }else{
-     $(`#stat_${ind}`)[0].innerHTML = "Normal"
-     $(`#stat_${ind}`).css("color","green");
- }
+if(n[ind] >= 4){
+    if(Math.abs(temp[ind][n[ind]-1] - temp[ind][n[ind]-2]) >= 0.7*(max[ind]-min[ind])){
+        critical[ind]+=1;
+
+        $(`#stat_${ind}`)[0].innerHTML = "Abrupt"
+        $(`#stat_${ind}`).css("color","orange");
+    }else if(t > temp[ind][n[ind]-1] && temp[ind][n[ind]-1] > temp[ind][n[ind]-2]){
+        $(`#stat_${ind}`)[0].innerHTML = "Incremental"
+        $(`#stat_${ind}`).css("color","green");
+    }else if(t < temp[ind][n[ind]-1] && temp[ind][n[ind]-1] < temp[ind][n[ind]-2]){
+       $(`#stat_${ind}`)[0].innerHTML = "Decremental"
+       $(`#stat_${ind}`).css("color","green");
+   }else{
+        $(`#stat_${ind}`)[0].innerHTML = "Recurring"
+        $(`#stat_${ind}`).css("color","yellow");
+    }
+}else{
+    $(`#stat_${ind}`)[0].innerHTML = "Collecting Data..."
+    $(`#stat_${ind}`).css("color","blue");
+}
+ 
 
 
  s+=t;
@@ -151,9 +185,6 @@ function getChart2(ind,n,t,avg){
 
 function getChart1(x,y,average,ind){
 
-
- if(critical[ind] >= 5)
-     alert( `Call Doctor for ${title[ind]}`);
 
  var ctx = document.getElementById(`chart2-${ind}`).getContext('2d');
  var myChart = new Chart(ctx, {

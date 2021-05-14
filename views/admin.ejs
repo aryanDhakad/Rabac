@@ -3,34 +3,44 @@
     <button type="button" class="btn btn-primary m-3 p-2" data-toggle="modal" data-target="#pat_register">
         Register New Doctor
     </button>
-    <div class="row">
-        <div class="col-6">
 
-            <%for(i in doc_names){%>
+    <h3>Doctor</h3>
+    <div class="row jic">
+
+        <%for(i in doc_names){%>
+            <div class="m-4 border border-primary p-2 shadow-lg">
                 <form action="/register" method="post">
-                    <h4>Username: <%= doc_names[i] %>
+                    <h4>
+                        <%= doc_names[i] %>
                     </h4>
                     <input type="hidden" name="op" value="del">
                     <input type="hidden" name="catagory" value="doctor">
-                    <button type="submit" class="btn btn-primary m-3 p-2" value="<%= doc_names[i] %>"
+                    <button type="submit" class="btn btn-primary m-2 p-2" value="<%= doc_names[i] %>"
                         name="username">Delete</button>
-                </form>
-                <%}%>
 
-        </div>
-        <div class="col-6">
-            <%for(i in pat_names){%>
+                </form>
+            </div>
+            <%}%>
+
+    </div>
+    <h3>Patient</h3>
+    <div class="row jic">
+
+        <%for(i in pat_names){%>
+            <div class="m-4 border border-primary p-2 shadow-lg">
                 <form action="/register" method="post">
-                    <h4>Username: <%= pat_names[i] %>
+                    <h4>
+                        <%= pat_names[i] %>
                     </h4>
                     <input type="hidden" name="op" value="del">
                     <input type="hidden" name="catagory" value="patient">
                     <button type="submit" class="btn btn-primary m-3 p-2" value="<%= pat_names[i] %>"
                         name="username">Delete</button>
                 </form>
-                <%}%>
-        </div>
+            </div>
+            <%}%>
     </div>
+
 
 
 

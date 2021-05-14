@@ -15,7 +15,7 @@ var transporter = nodemailer.createTransport({
     }
 })
 
-var serviceAccount = JSON.parse(process.env.FIRSTR);
+var serviceAccount = JSON.parse(process.env.FIRSTR1);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
